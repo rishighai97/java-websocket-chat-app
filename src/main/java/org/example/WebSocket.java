@@ -33,7 +33,7 @@ public class WebSocket {
     public void onTextMessage(Session session, String msg) throws IOException {
         final Message message = Message.generate(msg);
         final String messageRecipient = message.getToUserName();
-        System.out.println(format("Session id {0}. Message to be sent to user - {1}", session.getId(), messageRecipient));
+        System.out.println(format("Session id {0}. Message to be sent to user : {1}", session.getId(), messageRecipient));
         Session recipientUserSession = userNameToSessionMap.get(messageRecipient);
         if (isNull(recipientUserSession)) throw new IllegalStateException(format("Recipient user {0} is unavailable", messageRecipient));
         recipientUserSession.getAsyncRemote().sendText(message.getMessage());
